@@ -302,7 +302,13 @@ def title_block(doc, title, subtitle=None, verse=None, verse_ref=None, after=8):
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         spacing(p, before=4, after=after)
-        run(p, f"“{verse}”  ", italic=True, size=10, color=GREEN)
+        # "\n" no versículo = quebra de linha manual (pra equilibrar versos longos)
+        parts = verse.split("\n")
+        for i, part in enumerate(parts):
+            txt = ("“" if i == 0 else "") + part + ("”  " if i == len(parts) - 1 else "")
+            r = run(p, txt, italic=True, size=10, color=GREEN)
+            if i < len(parts) - 1:
+                r.add_break()
         run(p, verse_ref, bold=True, size=10, color=GREEN)
 
 

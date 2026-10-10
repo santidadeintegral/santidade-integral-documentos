@@ -24,8 +24,8 @@ def build():
     # ================================================== título
     title_block(doc, "ANAMNESE SOCIAL DA FAMÍLIA",
                 "Cadastro, Diagnóstico Socioeconômico e Plano de Desenvolvimento Familiar",
-                "Eu sou o pão da vida; aquele que vem a mim não terá fome, "
-                "e quem crê em mim nunca terá sede.", "João 6:35")
+                "Declarou-lhes, pois, Jesus: Eu sou o pão da vida; o que vem a mim jamais terá fome;\n"
+                "e o que crê em mim jamais terá sede.", "João 6:35")
 
     # ================================================== 1. ATENDIMENTO
     section_title(doc, "1", "Dados do atendimento")
