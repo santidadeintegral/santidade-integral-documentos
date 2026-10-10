@@ -37,8 +37,9 @@ def money_table(doc, headers, rows, widths_cm, size=8.5, total_label=None, total
         run(p, h, bold=True, size=size, color=WHITE)
     for label, cells in rows:
         r = t.add_row().cells
+        for c in r:
+            spacing(c.paragraphs[0], after=0)
         p = r[0].paragraphs[0]
-        spacing(p, after=0)
         bold = isinstance(label, tuple)
         run(p, label[0] if bold else label, bold=bold, size=size)
         if bold:
@@ -80,6 +81,8 @@ def check_table(doc, items, widths_cm=(13.0, 1.45, 1.45, 1.5), size=8.5, headers
         run(p, h, bold=True, size=size, color=WHITE)
     for it in items:
         r = t.add_row().cells
+        for c in r:
+            spacing(c.paragraphs[0], after=0)
         if isinstance(it, tuple):  # (grupo,) → linha de seção
             for c in r:
                 shade(c, LIGHT_HEX)
@@ -145,7 +148,7 @@ def build_mensal():
     # 1 — identificação
     small_title(doc, "1", "Identificação", before=2)
     field_line(doc, ("Período de competência", 1), ("Tesoureiro(a) / resp. financeiro", 1.6), ("CPF", 0.8), size=9)
-    field_line(doc, ("Conta bancária exclusiva (banco / ag. / conta)", 1.6), ("Saldo bancário em ____/____", 0.9), size=9)
+    field_line(doc, ("Conta bancária exclusiva (banco / ag. / conta)", 1.6), ("Saldo bancário em ____/____ (R$)", 0.9), size=9)
 
     # 2 — indicadores sociais
     small_title(doc, "2", "Execução física — atendimento do mês")
@@ -166,7 +169,7 @@ def build_mensal():
          ("Doações de pessoas jurídicas", ["", MONEY, MONEY, ""]),
          ("Ofertas e campanhas de igrejas parceiras", ["", MONEY, MONEY, ""]),
          ("Eventos, bazares e ações de arrecadação", ["", MONEY, MONEY, ""]),
-         ("Parcerias com o poder público (termo de fomento / colaboração)", ["", MONEY, MONEY, ""]),
+         ("Parcerias públicas (termo de fomento / colaboração)", ["", MONEY, MONEY, ""]),
          ("Rendimentos de aplicação financeira", ["", MONEY, MONEY, ""]),
          ("Outras receitas", ["", MONEY, MONEY, ""]),
          (("TOTAL DE RECEITAS",), [None, MONEY, MONEY, ""])],
@@ -229,7 +232,7 @@ def build_mensal():
                  ("(=) SALDO FINAL", True)])
     inner(right, [("Saldo do extrato bancário no último dia", False), ("(+) Caixa físico (fundo fixo)", False),
                   ("(−) Pagamentos emitidos não compensados", False), ("(+) Depósitos em trânsito", False),
-                  ("(=) SALDO CONCILIADO (deve igualar o saldo final)", True)])
+                  ("(=) SALDO CONCILIADO (= saldo final)", True)])
     doc.add_paragraph().paragraph_format.space_after = Pt(2)
 
     money_table(doc,
