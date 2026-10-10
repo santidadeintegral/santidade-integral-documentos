@@ -1,0 +1,4 @@
+~$*
+*.tmp
+.~lock.*#
+__pycache__/
