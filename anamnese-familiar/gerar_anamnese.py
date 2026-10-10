@@ -168,6 +168,7 @@ def build():
     check_line(doc, "Cadastro Único", ["Não cadastrado", "Cadastrado e atualizado", "Desatualizado (> 24 meses)"])
 
     # ================================================== 8. VÍNCULOS E REDE
+    doc.add_page_break()
     section_title(doc, "8", "Vínculos familiares, comunitários e rede de proteção")
     check_line(doc, "Acompanhamento em serviços", ["CRAS/PAIF", "CREAS/PAEFI", "CAPS", "Conselho Tutelar", "Nenhum"])
     check_line(doc, "Participação comunitária", ["Igreja/comunidade de fé", "Associação de moradores", "Grupo produtivo/cooperativa", "Nenhuma"])
